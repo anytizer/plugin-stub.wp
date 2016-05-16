@@ -1,4 +1,4 @@
-# Plugin Name
+# Plugin Stub
 
 An Object Oriented way to develop WordPress Plugins.
 
@@ -7,8 +7,8 @@ This work is for a stub plugin that implements commonly used hooks and features.
 
 **Rename Files**
 
- * plugin-name folder to your own.
- * plugin-name/plugin-name.php to your own name matching folder name.
+ * plugin-stub folder to your own.
+ * plugin-stub/plugin-stub.php to your own name matching folder name.
 
 
 **Rename Contents**
@@ -16,11 +16,11 @@ This work is for a stub plugin that implements commonly used hooks and features.
  * Author Name
  * URLs
  * author-name
- * plugin-name
- * Plugin Name
- * PluginName
- * pluginname
- * __PLUGIN_NAME_ROOT__
+ * plugin-stub
+ * Plugin Stub
+ * PluginStub
+ * pluginstub
+ * __PLUGIN_STUB_ROOT__
  * http://www.example.com/
 
 

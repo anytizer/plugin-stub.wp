@@ -1,5 +1,5 @@
 <?php
-class plugin_name
+class plugin_stub
 {
 	private $whoami = null;
 
@@ -7,7 +7,7 @@ class plugin_name
 	{
 	}
 	
-	public function init($whoami='plugin-name/plugin-name.php')
+	public function init($whoami='plugin-stub/plugin-stub.php')
 	{
 		$this->whoami=$whoami;
 
@@ -34,10 +34,28 @@ class plugin_name
 		/**
 		 * Install/Uninstall Hooks
 		 */
-		add_shortcode('plugin-name', array($this, '_handle_shortcode'));
+		add_shortcode('pluginstub', array($this, '_handle_shortcode'));
 		add_action('wp_enqueue_scripts', array($this, '_register_scripts'));
 		add_action('admin_print_footer_scripts', array($this, '_add_quicktags'));
 		add_action('init', array($this, '_js_buttons_init'));
+	}
+	
+	/**
+	 * @param array $attributes
+	 *
+	 * @return string
+	 */
+	public function _handle_shortcode($attributes = array())
+	{
+		$attributes = array_map('esc_attr', $attributes);
+		$standard_attributes = array(
+			# Add parameters
+		);
+		$attributes = shortcode_atts($standard_attributes, $attributes);
+		
+		# Do the HTML
+		$html = "Processed with Shortcode [pluginstub].";
+		return $html;
 	}
 
 	/**
@@ -45,13 +63,13 @@ class plugin_name
 	 */
 	public function _help_page()
 	{
-		require_once(__PLUGIN_NAME_ROOT__.'/pages/help-page.php');
+		require_once(__PLUGIN_STUB_ROOT__.'/pages/help-page.php');
 	}
 
 	public function _admin_menu(){
 		$icon = 'dashicons-info';
-		add_menu_page('Plugin Name', 'Plugin Name', 'manage_options', $this->whoami, array($this, '_help_page'), $icon, 80 );
-		wp_enqueue_style('plugin-name', plugins_url( 'pages/css/style.css', dirname(__FILE__)));
+		add_menu_page('Plugin Stub', 'Plugin Stub', 'manage_options', $this->whoami, array($this, '_help_page'), $icon, 80 );
+		wp_enqueue_style('plugin-stub', plugins_url( 'pages/css/style.css', dirname(__FILE__)));
 	}
 
 	public function _action_links($links) {
@@ -70,7 +88,7 @@ class plugin_name
 				'documentation' => '<a href="http://www.example.com/documenation/" target="_blank">Documentation</a>',
 				'donatations' => '<a href="http://www.example.com/donate/" target="_blank">Donate</a>',
 				'reviews' => '<a href="http://www.example.com/reviews" target="_blank">Reviews</a>',
-				'feedback' => "<a href='http://www.example.com/plugin-name/feedback/'>Feedback</a>",
+				'feedback' => "<a href='http://www.example.com/plugin-stub/feedback/'>Feedback</a>",
 				#'file' => $file,
 			);
 			
@@ -82,14 +100,13 @@ class plugin_name
 	
 	public function _render_meta_box()
 	{
-		#echo "Plugin Name - Meta Box is active.";
-		require_once(__PLUGIN_NAME_ROOT__.'/pages/meta-box.php');
+		require_once(__PLUGIN_STUB_ROOT__.'/pages/meta-box.php');
 	}
 
 	public function _meta_boxes_post($post) {
 		add_meta_box( 
 			'my-meta-box',
-			'Plugin Name - Meta Box',
+			'Plugin Stub - Meta Box',
 			array($this, '_render_meta_box'),
 			'post',
 			'normal',
@@ -102,14 +119,14 @@ class plugin_name
 	 */
 	public function _register_scripts()
 	{
-		wp_register_style('plugin-name', plugins_url('css/pages/style.css', __PLUGIN_NAME_ROOT__));
-		wp_enqueue_style('plugin-name');
+		wp_register_style('plugin-stub', plugins_url('css/pages/style.css', __PLUGIN_STUB_ROOT__));
+		wp_enqueue_style('plugin-stub');
 	}
 	
 	public function _add_quicktags()
 	{
 		if (wp_script_is('quicktags')){
-			$quicktags_js = file_get_contents(__PLUGIN_NAME_ROOT__.'/pages/js/quicktags.js');
+			$quicktags_js = file_get_contents(__PLUGIN_STUB_ROOT__.'/pages/js/quicktags.js');
 			echo "<script type='text/javascript'>{$quicktags_js}</script>";
 		}
 	}
@@ -122,7 +139,7 @@ class plugin_name
 	 * @return mixed
 	 */
 	function _register_js_buttons( $buttons ) {
-		array_push($buttons, 'separator', 'pluginname');
+		array_push($buttons, 'separator', 'pluginstub');
 		return $buttons;
 	}
 
@@ -134,7 +151,7 @@ class plugin_name
 	 * @return mixed
 	 */
 	function _add_external_plugins( $plugin_array ) {
-		$plugin_array['pluginname'] = plugins_url('pages/js/plugin-name.js' , __PLUGIN_NAME_ROOT__.'/'.basename(__PLUGIN_NAME_ROOT__));
+		$plugin_array['pluginstub'] = plugins_url('pages/js/plugin-stub.js' , __PLUGIN_STUB_ROOT__.'/'.basename(__PLUGIN_STUB_ROOT__));
 		return $plugin_array;
 	}
 
