@@ -34,10 +34,52 @@ class plugin_stub
 		/**
 		 * Install/Uninstall Hooks
 		 */
+		register_activation_hook($whoami, array($this, 'activate'));
+		register_deactivation_hook($whoami, array($this, 'deactivate'));
+		register_uninstall_hook($whoami, array(__CLASS__, 'uninstall'));
+		#add_action( 'activated_plugin',  array($this, 'activate'));
+		
 		add_shortcode('pluginstub', array($this, '_handle_shortcode'));
+		
 		add_action('wp_enqueue_scripts', array($this, '_register_scripts'));
 		add_action('admin_print_footer_scripts', array($this, '_add_quicktags'));
 		add_action('init', array($this, '_js_buttons_init'));
+		
+		#add_action('admin_notices', array($this, '_notice_success'));
+	}
+	
+	public function activate()
+	{
+		update_option('_plugin-stub-activated-on', date('Y-m-d H:i:s'));
+	}
+	
+	public function deactivate()
+	{
+		update_option('_plugin-stub-deactivated-on', date('Y-m-d H:i:s'));
+	}
+	
+	public static function uninstall()
+	{
+		update_option('_plgin-stub-uninstalled-on', date('Y-m-d H:i:s'));
+	}
+
+	# https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices
+	function _notice_success() {
+		$class = 'notice notice-success';
+		$message = 'Plugin Stub: Great! Plugin works. Checkout all features.';
+		printf('<div class="%1$s"><p>%2$s</p></div>', $class, $message); 
+
+		$class = 'notice notice-error is-dismissible';
+		$message = 'Plugin Stub: An error has occurred. But do not worry.';
+		printf('<div class="%1$s"><p>%2$s</p></div>', $class, $message);
+		
+		$class = 'notice notice-warning is-dismissible';
+		$message = 'Plugin Stub: Warning: Do not worry.';
+		printf('<div class="%1$s"><p>%2$s</p></div>', $class, $message);
+		
+		$class = 'notice notice-info is-dismissible';
+		$message = 'Plugin Stub: Info was found.';
+		printf('<div class="%1$s"><p>%2$s</p></div>', $class, $message);
 	}
 	
 	/**
@@ -66,8 +108,10 @@ class plugin_stub
 		require_once(__PLUGIN_STUB_ROOT__.'/pages/help-page.php');
 	}
 
-	public function _admin_menu(){
-		$icon = 'dashicons-info';
+	public function _admin_menu()
+	{
+		# https://developer.wordpress.org/resource/dashicons/#carrot
+		$icon = 'dashicons-carrot';
 		add_menu_page('Plugin Stub', 'Plugin Stub', 'manage_options', $this->whoami, array($this, '_help_page'), $icon, 80 );
 		wp_enqueue_style('plugin-stub', plugins_url( 'pages/css/style.css', dirname(__FILE__)));
 	}

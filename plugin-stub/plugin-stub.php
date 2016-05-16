@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Plugin Stub
- * Description: Works as an OOP based plugin stub: Just copy the scripts and start coding on it.
+ * Description: OOP based example plugin stub.
  * Author: Author Name
  * Author URI: http://www.example.com/about/author-name/
  * Plugin URI: http://www.example.com/about/plugin-name/

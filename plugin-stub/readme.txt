@@ -10,12 +10,15 @@ License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 
-Object Oriented sample plugin stub for creating your own WordPress Plugins.
+OOP based example plugin stub for creating your own WordPress Plugins.
 
 
 == Description ==
 
-This is a sample plugin stub. Download it and start editing. It comes with pre-setup list of items like menus and links. But everything is for a demonstration purpose only.
+This is a sample plugin stub. Download it and start modifying. It comes with pre-setup list of items like menus and links. You can modify it and make your own plugin.
+
+Everything here is for demonstration purpose as well as saving time on creating a new plugin stub.
+
 
 == Installation ==
 
@@ -51,9 +54,15 @@ It does not do anything. Download and code on it.
 
 == Screenshots ==
 
-1. Replace it.
+1. Blank Image - replace it with your own.
 
-2. Replace it too.
+2. Blank Image - replace it with your own.
+
+3. Implementation of Setings Link.
+
+4. Implementation of Plugin Row Links.
+
+5. Implentation of Admin Page.
 
 
 == Changelog ==
