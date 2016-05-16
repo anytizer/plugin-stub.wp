@@ -1,0 +1,10 @@
+/**
+ * Lowercase'd column names
+ */
+.my-tables tbody .name { color: #00F; }
+.my-tables tbody .rows { text-align: right; font-weight: bold; }
+.my-tables tbody .index_length { text-align: right; }
+.my-tables tbody .auto_increment { text-align: right; }
+
+.my-tables thead tr { background-color: #999; color:#FFF; font-weight:bold; }
+.my-tables td { border-bottom:1px solid #CCC; }
